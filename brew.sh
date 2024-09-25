@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Install Homebrew if it's not already installed.
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "Homebrew is already installed."
+fi
+
 # Install command-line tools using Homebrew.
 
 # Ask for the administrator password upfront.
@@ -29,7 +37,6 @@ brew install ssh-copy-id
 brew install zsh
 brew install fnm
 brew install thefuck
-
 
 # Casks
 brew install --cask 1password
