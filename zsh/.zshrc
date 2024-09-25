@@ -4,8 +4,6 @@ export WEBOS_CLI_TV="/opt/webOS_TV_SDK/CLI/bin"
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:/Users/koen/Projects/flutter/bin"
-export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH=$WEBOS_CLI_TV:$PATH
 
 export NPM_TOKEN="asdasd"
@@ -73,13 +71,13 @@ plugins=(
 	git
 	git-extras
   npm
-  nvm
-  rbenv
 	yarn
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-vscode
+  fnm
+  1password
 )
 
 source $ZSH/oh-my-zsh.sh
