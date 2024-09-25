@@ -39,3 +39,31 @@ function calc() {
   fi;
   printf "\n";
 }
+
+# Rename current branch
+function rename_branch() {
+  # Get the current branch name
+  local current_branch=$(git branch --show-current)
+
+  # Check if we're on a valid branch
+  if [[ -z "$current_branch" ]]; then
+    echo "Error: Unable to determine the current branch."
+    return 1
+  fi
+
+  # Display current branch and prompt for the new branch name
+  echo "Current branch: $current_branch"
+  read -p "Enter the new branch name: " new_name
+
+  # Validate the new branch name
+  if [[ -z "$new_name" ]]; then
+    echo "Error: Branch name cannot be empty."
+    return 1
+  fi
+
+  # Rename the current branch
+  git branch -m "$new_name"
+
+  # Confirm the renaming
+  echo "Branch '$current_branch' has been renamed to '$new_name'."
+}

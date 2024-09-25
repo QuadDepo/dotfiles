@@ -1,10 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export WEBOS_CLI_TV="/opt/webOS_TV_SDK/CLI/bin"
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH=$WEBOS_CLI_TV:$PATH
 
 export NPM_TOKEN="asdasd"
 export GITHUB_NPM_TOKEN=$NPM_TOKEN
@@ -83,6 +81,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 eval "$(fnm env)"
+eval $(thefuck --alias)
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
