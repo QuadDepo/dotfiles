@@ -28,6 +28,7 @@ brew install speedtest-cli
 brew install ssh-copy-id
 brew install zsh
 brew install fnm
+brew install thefuck
 
 
 # Casks
@@ -52,6 +53,8 @@ brew install --cask tidal
 brew install --cask tower
 brew install --cask visual-studio-code
 brew install --cask whatsapp
+brew install --cask hammerspoon
+brew install --cask mas
 
 # Remove outdated versions from the cellar.
 brew cleanup
