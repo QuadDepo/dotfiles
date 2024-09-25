@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.manishrc.dailynotes</string>
+	<key>connections</key>
+	<dict>
+		<key>25068517-7B13-47FA-8119-A712795A41A6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FC69ADEA-3054-4F4B-93D5-D0C5D02D2B7F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4A1BC665-9D60-400C-AC70-B80B1E7E8BA8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>25068517-7B13-47FA-8119-A712795A41A6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A7DC039F-5BD9-4D03-B6D4-864D7EF99F69</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CD7EFA7C-0E5E-44A7-BC82-BCEB666FF06B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CD7EFA7C-0E5E-44A7-BC82-BCEB666FF06B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FC69ADEA-3054-4F4B-93D5-D0C5D02D2B7F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E3CBF962-7FC1-45E4-B633-A74D4D767C1D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CD7EFA7C-0E5E-44A7-BC82-BCEB666FF06B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>@manishrc</string>
+	<key>description</key>
+	<string>Create a notes file with Today's date</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Today</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>A7DC039F-5BD9-4D03-B6D4-864D7EF99F69</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>today</string>
+				<key>subtext</key>
+				<string>Create one if it doesn't exist</string>
+				<key>text</key>
+				<string>Open today's notes</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>E3CBF962-7FC1-45E4-B633-A74D4D767C1D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query=$1
+
+TODAY=`date "+%Y-%m-%d"`
+YESTERDAY=`date -v -1d "+%Y-%m-%d"`
+
+FILE_EXTENSION="$file_extension"
+
+
+DAILY_FOLDER="$daily_note_folder"
+TODAY_NOTE_PATH="$DAILY_FOLDER/$TODAY.$FILE_EXTENSION"
+YESTERDAY_NOTE_PATH="$DAILY_FOLDER/$YESTERDAY.$FILE_EXTENSION"
+
+
+if [ ! -f "${TODAY_NOTE_PATH}" ]; then
+  echo "# $TODAY" &gt;&gt; "${TODAY_NOTE_PATH}"
+  echo "" &gt;&gt; "${TODAY_NOTE_PATH}"
+  echo "## To-Do" &gt;&gt; "${TODAY_NOTE_PATH}"
+  echo "### MIT"  &gt;&gt; "${TODAY_NOTE_PATH}"
+  echo "### PENDING"  &gt;&gt; "${TODAY_NOTE_PATH}"
+  cat "${YESTERDAY_NOTE_PATH}" | sed -n -e '/\- \[ \] /p' &gt;&gt; "${TODAY_NOTE_PATH}"
+fi
+
+open "${TODAY_NOTE_PATH}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CD7EFA7C-0E5E-44A7-BC82-BCEB666FF06B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>'{query}', {allvars}</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>FC69ADEA-3054-4F4B-93D5-D0C5D02D2B7F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query=$1
+
+TODAY=`date "+%Y-%m-%d"`
+YESTERDAY=`date -v -1d "+%Y-%m-%d"`
+USERNAME=`whoami`
+
+FILE_EXTENSION="$file_extension"
+
+
+DAILY_FOLDER="$daily_note_folder"
+TODAY_NOTE_PATH="$DAILY_FOLDER/$TODAY.$FILE_EXTENSION"
+YESTERDAY_NOTE_PATH="$DAILY_FOLDER/$YESTERDAY.$FILE_EXTENSION"
+
+
+open "${YESTERDAY_NOTE_PATH}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>25068517-7B13-47FA-8119-A712795A41A6</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>yesterday</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Open yesterday's notes</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>4A1BC665-9D60-400C-AC70-B80B1E7E8BA8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>## Features
+- Easily create and open a daily note.
+- Open in your default editor.
+- Bring unfinished tasks from previous day.
+- Open yesterday's note.
+
+
+
+## Setup
+1. Install this Workflow  
+   Download and double-click.  
+
+2. Find your Daily Notes folder.  
+   To get the full path, just drag the folder into the terminal.  
+   Then remove all "\" escape chars.  
+   Eg. ".../Library/Mobile\ Documents/Daily/" → ".../Library/Mobile Documents/"  
+
+3. Set the Folder in Today workflow  
+   Copy the path from step-2 and paste it as the value for "daily_note_folder"</string>
+	<key>uidata</key>
+	<dict>
+		<key>25068517-7B13-47FA-8119-A712795A41A6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>430</integer>
+		</dict>
+		<key>4A1BC665-9D60-400C-AC70-B80B1E7E8BA8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>430</integer>
+		</dict>
+		<key>A7DC039F-5BD9-4D03-B6D4-864D7EF99F69</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>170</integer>
+		</dict>
+		<key>CD7EFA7C-0E5E-44A7-BC82-BCEB666FF06B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>E3CBF962-7FC1-45E4-B633-A74D4D767C1D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>FC69ADEA-3054-4F4B-93D5-D0C5D02D2B7F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>550</integer>
+			<key>ypos</key>
+			<integer>380</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>daily_note_folder</key>
+		<string>/Users/ryangeorge</string>
+		<key>file_extension</key>
+		<string>md</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>daily_note_folder</string>
+	</array>
+	<key>version</key>
+	<string>0.0.15</string>
+	<key>webaddress</key>
+	<string>https://manishrc.com</string>
+</dict>
+</plist>

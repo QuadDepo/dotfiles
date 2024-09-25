@@ -4,5 +4,13 @@
 <dict>
 	<key>hidehat</key>
 	<true/>
+	<key>hidemenu</key>
+	<true/>
+	<key>hidesubtext</key>
+	<integer>3</integer>
+	<key>nativedarkmode</key>
+	<true/>
+	<key>scrollbarmode</key>
+	<integer>1</integer>
 </dict>
 </plist>
